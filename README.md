@@ -1,2 +1,2 @@
 # anim_search
- Android anime search app. created with Flutter and Jikan API
+App for searching Anime created with Flutter and Jikan API
