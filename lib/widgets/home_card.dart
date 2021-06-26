@@ -12,10 +12,9 @@ class HomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final device = MediaQuery.of(context);
-    final screenHeight = device.size.height;
-    final screenWidth = device.size.width;
-
+    // final device = MediaQuery.of(context);
+    // final screenHeight = device.size.height;
+    // final screenWidth = device.size.width;
     return Column(
       children: [
         Expanded(
@@ -30,7 +29,7 @@ class HomeCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
                 child: Text(
