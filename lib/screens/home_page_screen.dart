@@ -17,6 +17,10 @@ class _HomePageState extends State<HomePage> {
     Provider.of<DataProvider>(context, listen: false).getHomeData();
   }
 
+  void searchData(String query) {
+    Provider.of<DataProvider>(context, listen: false).searchData(query);
+  }
+
   @override
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context);
@@ -27,18 +31,6 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   leading: Icon(
-      //     Icons.animation,
-      //     color: Theme.of(context).accentColor,
-      //   ),
-      //   actions: [
-      //     IconButton(
-      //       icon: Icon(Icons.search),
-      //       onPressed: () {},
-      //     )
-      //   ],
-      // ),
       body: FloatingSearchAppBar(
         colorOnScroll: Colors.white,
         elevation: 0,
@@ -53,6 +45,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
+        onSubmitted: (query) => searchData(query),
         body: Container(
           height: screenHeight,
           child: homeData.isLoading

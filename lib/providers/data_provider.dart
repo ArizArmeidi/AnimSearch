@@ -7,9 +7,26 @@ class DataProvider with ChangeNotifier {
   List<HomeCardModel> searchList = [];
 
   Future<void> getHomeData() async {
-    final String url =
-        'https://api.jikan.moe/v3/search/anime?q=yourlieinapril&page=1&limit=12';
+    final String url = 'https://api.jikan.moe/v3/top/anime/1/upcoming';
+    try {
+      isLoading = true;
+      var dio = Dio();
+      var response = await dio.get(url);
+      List<HomeCardModel> tempData = [];
+      List items = response.data['top'];
+      tempData = items.map((data) => HomeCardModel.fromJson(data)).toList();
+      searchList = tempData;
+      print(searchList.length);
+      isLoading = false;
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
+  }
 
+  Future<void> searchData(String query) async {
+    final String url =
+        'https://api.jikan.moe/v3/search/anime?q=$query&page=1&limit=12';
     try {
       isLoading = true;
       var dio = Dio();

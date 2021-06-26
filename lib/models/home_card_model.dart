@@ -19,7 +19,7 @@ class HomeCardModel {
       url: json['url'],
       imageUrl: json['image_url'],
       title: json['title'],
-      episodes: json['episodes'],
+      episodes: json['episodes'] ?? 0,
     );
   }
 }
