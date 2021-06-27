@@ -20,6 +20,7 @@ class DataProvider with ChangeNotifier {
       isLoading = false;
       notifyListeners();
     } catch (e) {
+      isLoading = false;
       print(e);
     }
   }
@@ -39,6 +40,7 @@ class DataProvider with ChangeNotifier {
       isLoading = false;
       notifyListeners();
     } catch (e) {
+      isLoading = false;
       print(e);
     }
   }

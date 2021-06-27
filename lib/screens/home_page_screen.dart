@@ -14,7 +14,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<DataProvider>(context, listen: false).getHomeData();
+    getData();
+  }
+
+  Future<void> getData() async {
+    await Provider.of<DataProvider>(context, listen: false).getHomeData();
   }
 
   void searchData(String query) {
@@ -52,22 +56,25 @@ class _HomePageState extends State<HomePage> {
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : GridView.builder(
-                  padding: EdgeInsets.all(15).copyWith(
-                    left: 20,
-                    right: 20,
-                  ),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 1.5 / 2.5,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
-                  ),
-                  itemCount: homeData.searchList.length,
-                  itemBuilder: (context, index) => HomeCard(
-                        homeData: homeData.searchList[index],
-                        cardIndex: index,
-                      )),
+              : RefreshIndicator(
+                  onRefresh: getData,
+                  child: GridView.builder(
+                      padding: EdgeInsets.all(15).copyWith(
+                        left: 20,
+                        right: 20,
+                      ),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.5 / 2.5,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 15,
+                      ),
+                      itemCount: homeData.searchList.length,
+                      itemBuilder: (context, index) => HomeCard(
+                            homeData: homeData.searchList[index],
+                            cardIndex: index,
+                          )),
+                ),
         ),
       ),
     );
