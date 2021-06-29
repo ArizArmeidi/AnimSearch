@@ -1,4 +1,5 @@
 import 'package:anim_search/models/home_card_model.dart';
+import 'package:anim_search/screens/anime_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeCard extends StatelessWidget {
@@ -16,9 +17,10 @@ class HomeCard extends StatelessWidget {
     // final screenHeight = device.size.height;
     // final screenWidth = device.size.width;
     return InkWell(
-      onTap: () {
-        print(homeData.title);
-      },
+      onTap: () => Navigator.of(context).pushNamed(
+        AnimeDetailScreen.routeName,
+        arguments: homeData.malId,
+      ),
       child: Column(
         children: [
           Expanded(

@@ -1,4 +1,5 @@
 import 'package:anim_search/providers/data_provider.dart';
+import 'package:anim_search/screens/anime_details_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:anim_search/screens/home_page_screen.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.orange,
         ),
         home: HomePage(),
+        routes: {
+          AnimeDetailScreen.routeName: (context) => AnimeDetailScreen(),
+        },
       ),
     );
   }
