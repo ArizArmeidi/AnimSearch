@@ -26,27 +26,35 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
   Widget build(BuildContext context) {
     final dataProvider = Provider.of<DataProvider>(context);
     final AnimeModel animeData = dataProvider.animeData;
+    final device = MediaQuery.of(context);
+    // final screenHeight = device.size.height;
+    final screenWidth = device.size.width;
     return Scaffold(
       body: !dataProvider.isLoading
           ? CustomScrollView(
               slivers: [
                 SliverAppBar(
-                  backgroundColor: Colors.red,
-                  expandedHeight: 200,
+                  backgroundColor: Theme.of(context).accentColor,
+                  expandedHeight: screenWidth / 1.5,
+                  pinned: true,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Image.network(
                       animeData.imageUrl,
                       fit: BoxFit.cover,
                     ),
-                    title: Text(animeData.title),
-                    titlePadding:
-                        EdgeInsetsDirectional.only(start: 15, bottom: 20),
+                    centerTitle: true,
+                    title: Text(
+                      animeData.title,
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
                   ),
                 ),
                 SliverToBoxAdapter(
                   child: Text(
                     animeData.synopsis,
-                    style: TextStyle(fontSize: 25),
+                    style: TextStyle(fontSize: 35),
                   ),
                 )
               ],
