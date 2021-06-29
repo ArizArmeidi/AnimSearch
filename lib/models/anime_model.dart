@@ -7,10 +7,10 @@ class AnimeModel {
   late String titleEnglish;
   late String synopsis;
   late String status;
-  late int episodes;
+  late String episodes = 'TBA';
   late String duration;
   late String rating;
-  late int score;
+  late double score;
   late int rank;
   late String opTheme;
   late String edTheme;
@@ -29,27 +29,23 @@ class AnimeModel {
     required this.rating,
     required this.score,
     required this.rank,
-    required this.opTheme,
-    required this.edTheme,
   });
 
   factory AnimeModel.fromJson(Map<String, dynamic> json) {
     return AnimeModel(
-      malId: json['mal_id'],
-      url: json['url'],
-      imageUrl: json['image_url'],
-      title: json['title'],
-      trailerUrl: json['trailer_url'],
-      titleEnglish: json['title_english'],
-      synopsis: json['synopsis'],
-      status: json['status'],
-      episodes: json['episodes'],
-      duration: json['duration'],
-      rating: json['rating'],
-      score: json['score'],
-      rank: json['rank'],
-      opTheme: json['opening_themes'],
-      edTheme: json['ending_themes'],
+      malId: json['mal_id'] ?? 1,
+      url: json['url'] ?? '',
+      imageUrl: json['image_url'] ?? '',
+      title: json['title'] ?? '',
+      trailerUrl: json['trailer_url'] ?? '',
+      titleEnglish: json['title_english'] ?? '',
+      synopsis: json['synopsis'] ?? '',
+      status: json['status'] ?? '',
+      episodes: json['episodes'].toString(),
+      duration: json['duration'] ?? '',
+      rating: json['rating'] ?? '',
+      score: json['score'] ?? 0,
+      rank: json['rank'] ?? 0,
     );
   }
 }
