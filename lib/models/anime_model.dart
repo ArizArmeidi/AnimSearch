@@ -7,7 +7,7 @@ class AnimeModel {
   late String titleEnglish;
   late String synopsis;
   late String status;
-  late String episodes = 'TBA';
+  late int episodes;
   late String duration;
   late String rating;
   late double score;
@@ -39,7 +39,7 @@ class AnimeModel {
       titleEnglish: json['title_english'] ?? '',
       synopsis: json['synopsis'] ?? '',
       status: json['status'] ?? '',
-      episodes: json['episodes'].toString(),
+      episodes: json['episodes'] ?? 0,
       duration: json['duration'] ?? '',
       rating: json['rating'] ?? '',
       score: json['score'] ?? 0,
