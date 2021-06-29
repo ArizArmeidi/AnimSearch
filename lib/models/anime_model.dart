@@ -14,19 +14,19 @@ class AnimeModel {
   late int rank;
 
   AnimeModel({
-    required this.malId,
-    required this.url,
-    required this.imageUrl,
-    required this.title,
-    required this.trailerUrl,
-    required this.titleEnglish,
-    required this.synopsis,
-    required this.status,
-    required this.episodes,
-    required this.duration,
-    required this.rating,
-    required this.score,
-    required this.rank,
+    this.malId = 0,
+    this.url = '',
+    this.imageUrl = '',
+    this.title = '',
+    this.trailerUrl = '',
+    this.titleEnglish = '',
+    this.synopsis = '',
+    this.status = '',
+    this.episodes = 0,
+    this.duration = '',
+    this.rating = '',
+    this.score = 0,
+    this.rank = 0,
   });
 
   factory AnimeModel.fromJson(Map<String, dynamic> json) {

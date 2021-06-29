@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 class DataProvider with ChangeNotifier {
   bool isLoading = false;
   List<HomeCardModel> searchList = [];
-  late AnimeModel animeData;
+  late AnimeModel animeData = AnimeModel();
 
   Future<void> getHomeData() async {
     final String url = 'https://api.jikan.moe/v3/top/anime/1/upcoming';

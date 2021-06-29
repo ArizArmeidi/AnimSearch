@@ -28,8 +28,28 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
     final AnimeModel animeData = dataProvider.animeData;
     return Scaffold(
       body: !dataProvider.isLoading
-          ? Center(
-              child: Text(animeData.title),
+          ? CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  backgroundColor: Colors.red,
+                  expandedHeight: 200,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: Image.network(
+                      animeData.imageUrl,
+                      fit: BoxFit.cover,
+                    ),
+                    title: Text(animeData.title),
+                    titlePadding:
+                        EdgeInsetsDirectional.only(start: 15, bottom: 20),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Text(
+                    animeData.synopsis,
+                    style: TextStyle(fontSize: 25),
+                  ),
+                )
+              ],
             )
           : Center(child: CircularProgressIndicator()),
     );
