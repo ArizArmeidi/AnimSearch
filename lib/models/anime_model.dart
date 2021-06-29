@@ -12,8 +12,6 @@ class AnimeModel {
   late String rating;
   late double score;
   late int rank;
-  late String opTheme;
-  late String edTheme;
 
   AnimeModel({
     required this.malId,
