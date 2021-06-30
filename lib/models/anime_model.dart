@@ -12,6 +12,7 @@ class AnimeModel {
   late String rating;
   late double score;
   late int rank;
+  late String airingDate;
 
   AnimeModel({
     this.malId = 0,
@@ -27,16 +28,17 @@ class AnimeModel {
     this.rating = '',
     this.score = 0,
     this.rank = 0,
+    this.airingDate = '',
   });
 
   factory AnimeModel.fromJson(Map<String, dynamic> json) {
     return AnimeModel(
-      malId: json['mal_id'] ?? 1,
+      malId: json['mal_id'] ?? 0,
       url: json['url'] ?? '',
       imageUrl: json['image_url'] ?? '',
       title: json['title'] ?? '',
       trailerUrl: json['trailer_url'] ?? '',
-      titleEnglish: json['title_english'] ?? '',
+      titleEnglish: json['title_english'] ?? 'TBA',
       synopsis: json['synopsis'] ?? '',
       status: json['status'] ?? '',
       episodes: json['episodes'] ?? 0,
@@ -44,6 +46,7 @@ class AnimeModel {
       rating: json['rating'] ?? '',
       score: json['score'] ?? 0,
       rank: json['rank'] ?? 0,
+      airingDate: json['aired']['string'] ?? '',
     );
   }
 }

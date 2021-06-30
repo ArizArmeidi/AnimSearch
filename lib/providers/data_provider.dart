@@ -9,7 +9,7 @@ class DataProvider with ChangeNotifier {
   late AnimeModel animeData = AnimeModel();
 
   Future<void> getHomeData() async {
-    final String url = 'https://api.jikan.moe/v3/top/anime/1/upcoming';
+    final String url = 'https://api.jikan.moe/v3/top/anime/1/airing';
     try {
       isLoading = true;
       var dio = Dio();

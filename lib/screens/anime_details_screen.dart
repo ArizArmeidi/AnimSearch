@@ -39,9 +39,10 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
       body: !dataProvider.isLoading
           ? Container(
               child: Stack(
+                clipBehavior: Clip.none,
                 children: [
                   Container(
-                    height: screenWidth / 1.25,
+                    height: screenWidth / 1.3,
                     width: screenWidth,
                     child: Image.network(
                       animeData.imageUrl,
@@ -49,42 +50,78 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                     ),
                     color: Colors.orange,
                   ),
-                  Padding(
+                  SingleChildScrollView(
                     padding: EdgeInsets.only(top: screenWidth / 1.5),
-                    child: Expanded(
-                      child: SingleChildScrollView(
-                        clipBehavior: Clip.none,
-                        child: Container(
-                          width: screenWidth,
-                          height: screenHeight,
-                          padding: EdgeInsets.all(25).copyWith(top: 35),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(25),
-                              topRight: Radius.circular(25),
-                            ),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    clipBehavior: Clip.none,
+                    child: Container(
+                      width: screenWidth,
+                      height: screenHeight,
+                      padding: EdgeInsets.all(25).copyWith(top: 35),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25),
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
                             children: [
+                              Expanded(
+                                child: Container(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        animeData.title,
+                                        style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      Text(
+                                        animeData.titleEnglish,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Text(
+                                        animeData.airingDate,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                               Container(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                child: Stack(
+                                  alignment: Alignment.center,
                                   children: [
                                     Text(
-                                      animeData.title,
+                                      '${animeData.score}',
                                       style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w900,
                                       ),
                                     ),
-                                    Text(
-                                      animeData.titleEnglish,
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.w600,
+                                    SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: CircularProgressIndicator(
+                                        color: Colors.orange,
+                                        backgroundColor:
+                                            Colors.grey.withOpacity(.35),
+                                        strokeWidth: 6.0,
+                                        value: animeData.score / 10,
                                       ),
                                     ),
                                   ],
@@ -92,7 +129,17 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                               ),
                             ],
                           ),
-                        ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 25),
+                            child: Text(
+                              animeData.synopsis,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
