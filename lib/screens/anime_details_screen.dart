@@ -27,37 +27,77 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
     final dataProvider = Provider.of<DataProvider>(context);
     final AnimeModel animeData = dataProvider.animeData;
     final device = MediaQuery.of(context);
-    // final screenHeight = device.size.height;
+    final screenHeight = device.size.height;
     final screenWidth = device.size.width;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.orange,
       body: !dataProvider.isLoading
-          ? CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  backgroundColor: Theme.of(context).accentColor,
-                  expandedHeight: screenWidth / 1.5,
-                  pinned: true,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Image.network(
+          ? Container(
+              child: Stack(
+                children: [
+                  Container(
+                    height: screenWidth / 1.25,
+                    width: screenWidth,
+                    child: Image.network(
                       animeData.imageUrl,
                       fit: BoxFit.cover,
                     ),
-                    centerTitle: true,
-                    title: Text(
-                      animeData.title,
-                      style: TextStyle(
-                        fontSize: 18,
+                    color: Colors.orange,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: screenWidth / 1.5),
+                    child: Expanded(
+                      child: SingleChildScrollView(
+                        clipBehavior: Clip.none,
+                        child: Container(
+                          width: screenWidth,
+                          height: screenHeight,
+                          padding: EdgeInsets.all(25).copyWith(top: 35),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25),
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      animeData.title,
+                                      style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    Text(
+                                      animeData.titleEnglish,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: Text(
-                    animeData.synopsis,
-                    style: TextStyle(fontSize: 35),
-                  ),
-                )
-              ],
+                ],
+              ),
             )
           : Center(child: CircularProgressIndicator()),
     );
