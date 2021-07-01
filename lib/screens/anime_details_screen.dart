@@ -1,5 +1,6 @@
 import 'package:anim_search/models/anime_model.dart';
 import 'package:anim_search/providers/data_provider.dart';
+import 'package:anim_search/widgets/anime_details_genres.dart';
 import 'package:anim_search/widgets/anime_details_header.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -80,6 +81,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                               ),
                             ),
                           ),
+                          AnimeDetailsGenres(animeData: animeData)
                         ],
                       ),
                     ),

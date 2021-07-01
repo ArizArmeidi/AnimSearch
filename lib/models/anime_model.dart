@@ -13,6 +13,7 @@ class AnimeModel {
   late double score;
   late int rank;
   late String airingDate;
+  late List genres;
 
   AnimeModel({
     this.malId = 0,
@@ -29,9 +30,18 @@ class AnimeModel {
     this.score = 0,
     this.rank = 0,
     this.airingDate = '',
+    this.genres = const [],
   });
 
   factory AnimeModel.fromJson(Map<String, dynamic> json) {
+    List genresList = json['genres'];
+    List tempGenresList = [];
+    for (int i = 0; i < genresList.length; i++) {
+      var moves = json['genres'][i]['name'];
+      print('moves : ' + moves);
+      tempGenresList.add(moves);
+    }
+
     return AnimeModel(
       malId: json['mal_id'] ?? 0,
       url: json['url'] ?? '',
@@ -47,6 +57,7 @@ class AnimeModel {
       score: json['score'] ?? 0,
       rank: json['rank'] ?? 0,
       airingDate: json['aired']['string'] ?? '',
+      genres: tempGenresList,
     );
   }
 }

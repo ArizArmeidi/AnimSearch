@@ -53,9 +53,8 @@ class DataProvider with ChangeNotifier {
       isLoading = true;
       var dio = Dio();
       var response = await dio.get(url);
-      print(response);
+      // print(response);
       animeData = AnimeModel.fromJson(response.data);
-      print(animeData);
       isLoading = false;
       notifyListeners();
     } catch (e) {
