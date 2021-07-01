@@ -1,5 +1,6 @@
 import 'package:anim_search/models/anime_model.dart';
 import 'package:anim_search/providers/data_provider.dart';
+import 'package:anim_search/widgets/anime_details_header.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +28,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
     final dataProvider = Provider.of<DataProvider>(context);
     final AnimeModel animeData = dataProvider.animeData;
     final device = MediaQuery.of(context);
-    final screenHeight = device.size.height;
+    // final screenHeight = device.size.height;
     final screenWidth = device.size.width;
     return Scaffold(
       appBar: AppBar(
@@ -55,7 +56,6 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                     clipBehavior: Clip.none,
                     child: Container(
                       width: screenWidth,
-                      height: screenHeight,
                       padding: EdgeInsets.all(25).copyWith(top: 35),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -67,67 +67,8 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        animeData.title,
-                                        style: TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      Text(
-                                        animeData.titleEnglish,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Text(
-                                        animeData.airingDate,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Text(
-                                      '${animeData.score}',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 50,
-                                      width: 50,
-                                      child: CircularProgressIndicator(
-                                        color: Colors.orange,
-                                        backgroundColor:
-                                            Colors.grey.withOpacity(.35),
-                                        strokeWidth: 6.0,
-                                        value: animeData.score / 10,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                          AnimeDetailsHeader(
+                            animeData: animeData,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 25),
