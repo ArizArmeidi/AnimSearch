@@ -58,6 +58,8 @@ class _HomePageState extends State<HomePage> {
                 )
               : RefreshIndicator(
                   onRefresh: getData,
+                  color: Colors.orange,
+                  strokeWidth: 2.5,
                   child: GridView.builder(
                       padding: EdgeInsets.all(15).copyWith(
                         left: 20,
