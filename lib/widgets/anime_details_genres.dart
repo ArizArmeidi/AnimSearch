@@ -33,17 +33,14 @@ class AnimeDetailsGenres extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List genreList = animeData.genres;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 25),
-      child: GridView.count(
-        shrinkWrap: true,
-        padding: EdgeInsets.zero,
-        crossAxisCount: 3,
-        mainAxisSpacing: 4,
-        childAspectRatio: 6 / 1.5,
-        crossAxisSpacing: 4,
-        children: genreList.map((item) => moveLabel(item, animeData)).toList(),
-      ),
+    return GridView.count(
+      shrinkWrap: true,
+      padding: EdgeInsets.zero,
+      crossAxisCount: 3,
+      mainAxisSpacing: 4,
+      childAspectRatio: 6 / 1.5,
+      crossAxisSpacing: 4,
+      children: genreList.map((item) => moveLabel(item, animeData)).toList(),
     );
   }
 }

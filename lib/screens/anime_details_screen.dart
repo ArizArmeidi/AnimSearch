@@ -58,7 +58,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                     clipBehavior: Clip.none,
                     child: Container(
                       width: screenWidth,
-                      padding: EdgeInsets.all(25).copyWith(top: 35),
+                      // padding: EdgeInsets.all(25).copyWith(top: 35),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
@@ -69,11 +69,16 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          AnimeDetailsHeader(
-                            animeData: animeData,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25)
+                                .copyWith(top: 25),
+                            child: AnimeDetailsHeader(
+                              animeData: animeData,
+                            ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 25),
+                            padding: const EdgeInsets.symmetric(horizontal: 25)
+                                .copyWith(top: 25),
                             child: Text(
                               animeData.synopsis,
                               textAlign: TextAlign.left,
@@ -82,11 +87,27 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                               ),
                             ),
                           ),
-                          AnimeDetailsGenres(animeData: animeData),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 25, vertical: 15),
+                            child: AnimeDetailsGenres(animeData: animeData),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: const Text(
+                              'Animes Like This',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
                           Container(
                             height: screenWidth / 2,
                             width: screenWidth,
+                            margin: EdgeInsets.symmetric(vertical: 15),
                             child: ListView.builder(
+                              padding: EdgeInsets.symmetric(horizontal: 15),
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               itemCount: dataProvider.recommendationList.length,
