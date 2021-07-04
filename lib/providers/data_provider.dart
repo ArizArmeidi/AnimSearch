@@ -1,11 +1,14 @@
 import 'package:anim_search/models/anime_model.dart';
 import 'package:anim_search/models/home_card_model.dart';
+import 'package:anim_search/models/recommendation_model.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
 class DataProvider with ChangeNotifier {
   bool isLoading = false;
   List<HomeCardModel> searchList = [];
+  List<RecommendationModel> recommendationList = [];
+  late int genreId;
   late AnimeModel animeData = AnimeModel();
 
   Future<void> getHomeData() async {
@@ -38,7 +41,6 @@ class DataProvider with ChangeNotifier {
       List items = response.data['results'];
       tempData = items.map((data) => HomeCardModel.fromJson(data)).toList();
       searchList = tempData;
-      print(searchList.length);
       isLoading = false;
       notifyListeners();
     } catch (e) {
@@ -53,8 +55,32 @@ class DataProvider with ChangeNotifier {
       isLoading = true;
       var dio = Dio();
       var response = await dio.get(url);
-      // print(response);
       animeData = AnimeModel.fromJson(response.data);
+      await getRecommendationData(animeData.genreId);
+      isLoading = false;
+      notifyListeners();
+    } catch (e) {
+      isLoading = false;
+      print(e);
+    }
+  }
+
+  Future<void> getRecommendationData(int genreId) async {
+    final String url = 'https://api.jikan.moe/v3/genre/anime/$genreId/1';
+    try {
+      isLoading = true;
+      var dio = Dio();
+      var response = await dio.get(url);
+      List<RecommendationModel> tempRecommendation = [];
+      List items = response.data['anime'];
+      tempRecommendation = items
+          .map((data) => RecommendationModel.fromJson(data))
+          .take(5)
+          .toList();
+      recommendationList = tempRecommendation;
+      for (var i = 0; i != recommendationList.length; i++) {
+        print(recommendationList[i].title);
+      }
       isLoading = false;
       notifyListeners();
     } catch (e) {

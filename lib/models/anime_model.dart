@@ -14,6 +14,7 @@ class AnimeModel {
   late int rank;
   late String airingDate;
   late List genres;
+  late int genreId;
 
   AnimeModel({
     this.malId = 0,
@@ -31,15 +32,16 @@ class AnimeModel {
     this.rank = 0,
     this.airingDate = '',
     this.genres = const [],
+    this.genreId = 1,
   });
 
   factory AnimeModel.fromJson(Map<String, dynamic> json) {
     List genresList = json['genres'];
     List tempGenresList = [];
     for (int i = 0; i < genresList.length; i++) {
-      var moves = json['genres'][i]['name'];
-      print('moves : ' + moves);
-      tempGenresList.add(moves);
+      var genres = json['genres'][i]['name'];
+      tempGenresList.add(genres);
+      // print(tempGenresList);
     }
 
     return AnimeModel(
@@ -58,6 +60,7 @@ class AnimeModel {
       rank: json['rank'] ?? 0,
       airingDate: json['aired']['string'] ?? '',
       genres: tempGenresList,
+      genreId: json['genres'][0]['mal_id'],
     );
   }
 }
