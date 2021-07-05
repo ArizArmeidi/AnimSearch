@@ -35,7 +35,9 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
       ),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.orange,
@@ -105,7 +107,8 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                           Container(
                             height: screenWidth / 2,
                             width: screenWidth,
-                            margin: EdgeInsets.symmetric(vertical: 15),
+                            margin: EdgeInsets.symmetric(vertical: 15)
+                                .copyWith(bottom: 35),
                             child: ListView.builder(
                               padding: EdgeInsets.symmetric(horizontal: 15),
                               shrinkWrap: true,
@@ -124,7 +127,11 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                 ],
               ),
             )
-          : Center(child: CircularProgressIndicator()),
+          : Center(
+              child: CircularProgressIndicator(
+              color: Colors.white,
+              strokeWidth: 5,
+            )),
     );
   }
 }
