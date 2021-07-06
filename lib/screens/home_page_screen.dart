@@ -39,13 +39,18 @@ class _HomePageState extends State<HomePage> {
         colorOnScroll: Colors.white,
         elevation: 0,
         hideKeyboardOnDownScroll: true,
-        hint: '',
+        title: Container(),
+        hint: 'Search anime or manga',
         leadingActions: [
           Padding(
             padding: const EdgeInsets.only(left: 5),
-            child: Icon(
-              Icons.animation_outlined,
-              color: Theme.of(context).accentColor,
+            child: IconButton(
+              icon: Icon(
+                Icons.animation_outlined,
+                color: Theme.of(context).accentColor,
+              ),
+              splashColor: Colors.transparent,
+              onPressed: getData,
             ),
           ),
         ],
