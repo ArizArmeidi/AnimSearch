@@ -11,11 +11,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  @override
-  void initState() {
-    super.initState();
-    getData();
-  }
 
   Future<void> getData() async {
     await Provider.of<DataProvider>(context, listen: false).getHomeData();
@@ -57,13 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final device = MediaQuery.of(context);
-    final screenHeight = device.size.height;
-    final screenWidth = device.size.width;
-
     return Scaffold(
       body: FloatingSearchAppBar(
         colorOnScroll: Colors.white,
+        liftOnScrollElevation: 0,
         elevation: 0,
         hideKeyboardOnDownScroll: true,
         title: Container(),
@@ -76,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.animation_outlined,
                 color: Theme.of(context).accentColor,
               ),
-              splashColor: Colors.transparent,
+              splashRadius: 25,
               onPressed: getData,
             ),
           ),
@@ -87,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Container(
               height: 25,
-              margin: EdgeInsets.symmetric(vertical: 5).copyWith(bottom: 10),
+              margin: EdgeInsets.only(bottom: 10),
               child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 scrollDirection: Axis.horizontal,

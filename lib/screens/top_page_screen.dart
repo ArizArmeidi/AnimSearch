@@ -20,10 +20,6 @@ class _TopPageState extends State<TopPage> {
     await Provider.of<DataProvider>(context, listen: false).getHomeData();
   }
 
-  void searchData(String query) {
-    Provider.of<DataProvider>(context, listen: false).searchData(query);
-  }
-
   @override
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context);
@@ -46,21 +42,22 @@ class _TopPageState extends State<TopPage> {
                 color: Colors.orange,
                 strokeWidth: 2.5,
                 child: GridView.builder(
-                    padding: EdgeInsets.all(15).copyWith(
-                      left: 20,
-                      right: 20,
-                    ),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1.5 / 2.5,
-                      crossAxisSpacing: 15,
-                      mainAxisSpacing: 15,
-                    ),
-                    itemCount: homeData.searchList.length,
-                    itemBuilder: (context, index) => HomeCard(
-                          homeData: homeData.searchList[index],
-                          cardIndex: index,
-                        )),
+                  padding: EdgeInsets.all(15).copyWith(
+                    left: 20,
+                    right: 20,
+                  ),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 1.5 / 2.5,
+                    crossAxisSpacing: 15,
+                    mainAxisSpacing: 15,
+                  ),
+                  itemCount: homeData.searchList.length,
+                  itemBuilder: (context, index) => HomeCard(
+                    homeData: homeData.searchList[index],
+                    cardIndex: index,
+                  ),
+                ),
               ),
       ),
     );
