@@ -67,13 +67,16 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.only(left: 5),
             child: IconButton(
-              icon: Icon(
-                Icons.album_outlined,
-                color: Theme.of(context).accentColor,
-              ),
-              splashRadius: 25,
-              onPressed: () => getData('airing'),
-            ),
+                icon: Icon(
+                  Icons.album_outlined,
+                  color: Theme.of(context).accentColor,
+                ),
+                splashRadius: 25,
+                onPressed: () {
+                  setState(() {
+                    getData('airing');
+                  });
+                }),
           ),
         ],
         onSubmitted: (query) {
