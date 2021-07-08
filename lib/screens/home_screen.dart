@@ -95,19 +95,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   _buttonBuilder('Upcoming', 1, 'upcoming'),
                   _buttonBuilder('Series', 2, 'tv'),
                   _buttonBuilder('Movie', 3, 'movie'),
+                  _buttonBuilder('OVA', 4, 'ova'),
+                  _buttonBuilder('Special Release', 5, 'special'),
                 ],
               ),
             ),
             Expanded(
               child: Container(
                 height: 270,
-                child: _selectedIndex == 0
-                    ? AnimeGridPage()
-                    : _selectedIndex == 1
-                        ? AnimeGridPage()
-                        : _selectedIndex == 2
-                            ? AnimeGridPage()
-                            : AnimeGridPage(),
+                child: AnimeGridPage(),
               ),
             ),
           ],
