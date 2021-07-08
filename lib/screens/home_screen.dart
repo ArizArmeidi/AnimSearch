@@ -105,7 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               child: Container(
-                height: 270,
                 child: AnimeGridPage(),
               ),
             ),
