@@ -62,12 +62,13 @@ class _HomeScreenState extends State<HomeScreen> {
         hideKeyboardOnDownScroll: true,
         title: Container(),
         hint: 'Search anime or manga',
+        iconColor: Colors.orange,
         leadingActions: [
           Padding(
             padding: const EdgeInsets.only(left: 5),
             child: IconButton(
               icon: Icon(
-                Icons.animation_outlined,
+                Icons.album_outlined,
                 color: Theme.of(context).accentColor,
               ),
               splashRadius: 25,
