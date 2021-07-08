@@ -1,5 +1,5 @@
 import 'package:anim_search/providers/data_provider.dart';
-import 'package:anim_search/screens/top_page_screen.dart';
+import 'package:anim_search/screens/anime_grid_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:provider/provider.dart';
@@ -12,19 +12,21 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  Future<void> getData() async {
-    await Provider.of<DataProvider>(context, listen: false).getHomeData();
+  Future<void> getData(String category) async {
+    await Provider.of<DataProvider>(context, listen: false)
+        .getHomeData(category: category);
   }
 
   void searchData(String query) {
     Provider.of<DataProvider>(context, listen: false).searchData(query);
   }
 
-  Widget _buttonBuilder(String name, int myIndex) {
+  Widget _buttonBuilder(String name, int myIndex, String category) {
     return GestureDetector(
       onTap: () {
         setState(() {
           _selectedIndex = myIndex;
+          getData(category);
         });
       },
       child: Container(
@@ -69,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Theme.of(context).accentColor,
               ),
               splashRadius: 25,
-              onPressed: getData,
+              onPressed: () => getData('airing'),
             ),
           ),
         ],
@@ -84,11 +86,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 scrollDirection: Axis.horizontal,
                 children: [
-                  _buttonBuilder('Top', 0),
-                  _buttonBuilder('Upcoming', 1),
-                  _buttonBuilder('Series', 2),
-                  _buttonBuilder('Movie', 3),
-                  _buttonBuilder('Movie', 3),
+                  _buttonBuilder('Top', 0, 'airing'),
+                  _buttonBuilder('Upcoming', 1, 'upcoming'),
+                  _buttonBuilder('Series', 2, 'tv'),
+                  _buttonBuilder('Movie', 3, 'movie'),
                 ],
               ),
             ),
@@ -96,18 +97,12 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Container(
                 height: 270,
                 child: _selectedIndex == 0
-                    ? TopPage()
+                    ? AnimeGridPage()
                     : _selectedIndex == 1
-                        ? Container(
-                            color: Colors.red,
-                          )
+                        ? AnimeGridPage()
                         : _selectedIndex == 2
-                            ? Container(
-                                color: Colors.grey,
-                              )
-                            : Container(
-                                color: Colors.amber,
-                              ),
+                            ? AnimeGridPage()
+                            : AnimeGridPage(),
               ),
             ),
           ],

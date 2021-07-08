@@ -11,8 +11,8 @@ class DataProvider with ChangeNotifier {
   late int genreId;
   late AnimeModel animeData = AnimeModel();
 
-  Future<void> getHomeData() async {
-    final String url = 'https://api.jikan.moe/v3/top/anime/1/airing';
+  Future<void> getHomeData({String category = 'airing'}) async {
+    final String url = 'https://api.jikan.moe/v3/top/anime/1/$category';
     try {
       isLoading = true;
       var dio = Dio();

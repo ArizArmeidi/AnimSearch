@@ -4,12 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:anim_search/providers/data_provider.dart';
 import 'package:anim_search/widgets/home_card.dart';
 
-class TopPage extends StatefulWidget {
+class AnimeGridPage extends StatefulWidget {
   @override
-  _TopPageState createState() => _TopPageState();
+  _AnimeGridPageState createState() => _AnimeGridPageState();
 }
 
-class _TopPageState extends State<TopPage> {
+class _AnimeGridPageState extends State<AnimeGridPage> {
   @override
   void initState() {
     super.initState();
@@ -35,7 +35,10 @@ class _TopPageState extends State<TopPage> {
         width: screenWidth,
         child: homeData.isLoading
             ? Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: Colors.orange,
+                  strokeWidth: 5,
+                ),
               )
             : RefreshIndicator(
                 onRefresh: getData,
