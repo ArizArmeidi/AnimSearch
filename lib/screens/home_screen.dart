@@ -75,7 +75,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
-        onSubmitted: (query) => searchData(query),
+        onSubmitted: (query) {
+          setState(() {
+            searchData(query);
+          });
+        },
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
