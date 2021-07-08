@@ -7,14 +7,14 @@ class AnimeModel {
   late String titleEnglish;
   late String synopsis;
   late String status;
-  late int episodes;
+  late var episodes;
   late String duration;
   late String rating;
-  late double score;
-  late int rank;
+  late var score;
+  late var rank;
   late String airingDate;
   late List genres;
-  late int genreId;
+  late var genreId;
 
   AnimeModel({
     this.malId = 0,
