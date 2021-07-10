@@ -49,9 +49,13 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                   Container(
                     height: screenWidth / 1.3,
                     width: screenWidth,
-                    child: Image.network(
-                      animeData.imageUrl,
-                      fit: BoxFit.cover,
+                    child: ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.3), BlendMode.multiply),
+                      child: Image.network(
+                        animeData.imageUrl,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     color: Colors.orange,
                   ),
