@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   _buttonBuilder('Top', 0, 'airing'),
                   _buttonBuilder('Upcoming', 1, 'upcoming'),
                   _buttonBuilder('Series', 2, 'tv'),
-                  _buttonBuilder('Movie', 3, 'movie'),
+                  _buttonBuilder('Movies', 3, 'movie'),
                   _buttonBuilder('OVA', 4, 'ova'),
                   _buttonBuilder('Special Release', 5, 'special'),
                 ],
