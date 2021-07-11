@@ -61,6 +61,7 @@ class DataProvider with ChangeNotifier {
         'https://api.jikan.moe/v3/search/anime?q=$query&page=1&limit=12';
     try {
       isLoading = true;
+      isError = false;
       var dio = Dio();
       var response = await dio.get(url);
       List<HomeCardModel> tempData = [];
@@ -103,6 +104,7 @@ class DataProvider with ChangeNotifier {
     final String url = 'https://api.jikan.moe/v3/anime/$malId';
     try {
       isLoading = true;
+      isError = false;
       var dio = Dio();
       var response = await dio.get(url);
       animeData = AnimeModel.fromJson(response.data);
@@ -143,6 +145,7 @@ class DataProvider with ChangeNotifier {
     final String url = 'https://api.jikan.moe/v3/genre/anime/$genreId/1';
     try {
       isLoading = true;
+      isError = false;
       var dio = Dio();
       var response = await dio.get(url);
       List<RecommendationModel> tempRecommendation = [];
