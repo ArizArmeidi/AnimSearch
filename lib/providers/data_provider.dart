@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 
 class DataProvider with ChangeNotifier {
   bool isLoading = false;
+  bool isError = false;
   List<HomeCardModel> searchList = [];
   List<RecommendationModel> recommendationList = [];
   late int genreId;
@@ -15,6 +16,7 @@ class DataProvider with ChangeNotifier {
     final String url = 'https://api.jikan.moe/v3/top/anime/1/$category';
     try {
       isLoading = true;
+      isError = false;
       var dio = Dio();
       var response = await dio.get(url);
       List<HomeCardModel> tempData = [];
@@ -24,8 +26,32 @@ class DataProvider with ChangeNotifier {
       print(searchList.length);
       isLoading = false;
       notifyListeners();
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.response) {
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      if (e.type == DioErrorType.connectTimeout) {
+        print('check your connection');
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      if (e.type == DioErrorType.receiveTimeout) {
+        print('unable to connect to the server');
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      if (e.type == DioErrorType.other) {
+        print('Something went wrong');
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      print(e);
     } catch (e) {
-      isLoading = false;
       print(e);
     }
   }
@@ -43,8 +69,32 @@ class DataProvider with ChangeNotifier {
       searchList = tempData;
       isLoading = false;
       notifyListeners();
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.response) {
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      if (e.type == DioErrorType.connectTimeout) {
+        print('check your connection');
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      if (e.type == DioErrorType.receiveTimeout) {
+        print('unable to connect to the server');
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      if (e.type == DioErrorType.other) {
+        print('Something went wrong');
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      print(e);
     } catch (e) {
-      isLoading = false;
       print(e);
     }
   }
@@ -59,8 +109,32 @@ class DataProvider with ChangeNotifier {
       await getRecommendationData(animeData.genreId);
       isLoading = false;
       notifyListeners();
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.response) {
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      if (e.type == DioErrorType.connectTimeout) {
+        print('check your connection');
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      if (e.type == DioErrorType.receiveTimeout) {
+        print('unable to connect to the server');
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      if (e.type == DioErrorType.other) {
+        print('Something went wrong');
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      print(e);
     } catch (e) {
-      isLoading = false;
       print(e);
     }
   }
@@ -83,8 +157,32 @@ class DataProvider with ChangeNotifier {
       }
       isLoading = false;
       notifyListeners();
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.response) {
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      if (e.type == DioErrorType.connectTimeout) {
+        print('check your connection');
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      if (e.type == DioErrorType.receiveTimeout) {
+        print('unable to connect to the server');
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      if (e.type == DioErrorType.other) {
+        print('Something went wrong');
+        isError = true;
+        notifyListeners();
+        return;
+      }
+      print(e);
     } catch (e) {
-      isLoading = false;
       print(e);
     }
   }

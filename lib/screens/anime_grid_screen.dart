@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:anim_search/providers/data_provider.dart';
 import 'package:anim_search/widgets/home_card.dart';
+import 'error_screen.dart';
 
 class AnimeGridPage extends StatefulWidget {
   @override
@@ -33,35 +34,37 @@ class _AnimeGridPageState extends State<AnimeGridPage> {
       body: Container(
         height: screenHeight,
         width: screenWidth,
-        child: homeData.isLoading
-            ? Center(
-                child: CircularProgressIndicator(
-                  color: Colors.orange,
-                  strokeWidth: 5,
-                ),
-              )
-            : RefreshIndicator(
-                onRefresh: getData,
-                color: Colors.orange,
-                strokeWidth: 2.5,
-                child: GridView.builder(
-                  padding: EdgeInsets.all(15).copyWith(
-                    left: 20,
-                    right: 20,
+        child: homeData.isError
+            ? ErrorScreen()
+            : homeData.isLoading
+                ? Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.orange,
+                      strokeWidth: 5,
+                    ),
+                  )
+                : RefreshIndicator(
+                    onRefresh: getData,
+                    color: Colors.orange,
+                    strokeWidth: 2.5,
+                    child: GridView.builder(
+                      padding: EdgeInsets.all(15).copyWith(
+                        left: 20,
+                        right: 20,
+                      ),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.5 / 2.5,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 15,
+                      ),
+                      itemCount: homeData.searchList.length,
+                      itemBuilder: (context, index) => HomeCard(
+                        homeData: homeData.searchList[index],
+                        cardIndex: index,
+                      ),
+                    ),
                   ),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 1.5 / 2.5,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
-                  ),
-                  itemCount: homeData.searchList.length,
-                  itemBuilder: (context, index) => HomeCard(
-                    homeData: homeData.searchList[index],
-                    cardIndex: index,
-                  ),
-                ),
-              ),
       ),
     );
   }
