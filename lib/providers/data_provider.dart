@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 class DataProvider with ChangeNotifier {
   bool isLoading = false;
   bool isError = false;
+  String errorMessage = '';
   List<HomeCardModel> searchList = [];
   List<RecommendationModel> recommendationList = [];
   late int genreId;
@@ -29,23 +30,24 @@ class DataProvider with ChangeNotifier {
     } on DioError catch (e) {
       if (e.type == DioErrorType.response) {
         isError = true;
+        errorMessage = 'An Error Has Occured Please Try Again';
         notifyListeners();
         return;
       }
       if (e.type == DioErrorType.connectTimeout) {
-        print('check your connection');
         isError = true;
+        errorMessage = 'Your Connection has Timed Out';
         notifyListeners();
         return;
       }
       if (e.type == DioErrorType.receiveTimeout) {
-        print('unable to connect to the server');
+        errorMessage = 'Unable to Connect to the Server';
         isError = true;
         notifyListeners();
         return;
       }
       if (e.type == DioErrorType.other) {
-        print('Something went wrong');
+        errorMessage = 'Something Went Wrong Please Check Your Connection';
         isError = true;
         notifyListeners();
         return;
@@ -73,23 +75,24 @@ class DataProvider with ChangeNotifier {
     } on DioError catch (e) {
       if (e.type == DioErrorType.response) {
         isError = true;
+        errorMessage = 'An Error Has Occured Please Try Again';
         notifyListeners();
         return;
       }
       if (e.type == DioErrorType.connectTimeout) {
-        print('check your connection');
         isError = true;
+        errorMessage = 'Your Connection has Timed Out';
         notifyListeners();
         return;
       }
       if (e.type == DioErrorType.receiveTimeout) {
-        print('unable to connect to the server');
+        errorMessage = 'Unable to Connect to the Server';
         isError = true;
         notifyListeners();
         return;
       }
       if (e.type == DioErrorType.other) {
-        print('Something went wrong');
+        errorMessage = 'Something Went Wrong Please Check Your Connection';
         isError = true;
         notifyListeners();
         return;
@@ -114,23 +117,24 @@ class DataProvider with ChangeNotifier {
     } on DioError catch (e) {
       if (e.type == DioErrorType.response) {
         isError = true;
+        errorMessage = 'An Error Has Occured Please Try Again';
         notifyListeners();
         return;
       }
       if (e.type == DioErrorType.connectTimeout) {
-        print('check your connection');
         isError = true;
+        errorMessage = 'Your Connection has Timed Out';
         notifyListeners();
         return;
       }
       if (e.type == DioErrorType.receiveTimeout) {
-        print('unable to connect to the server');
+        errorMessage = 'Unable to Connect to the Server';
         isError = true;
         notifyListeners();
         return;
       }
       if (e.type == DioErrorType.other) {
-        print('Something went wrong');
+        errorMessage = 'Something Went Wrong Please Check Your Connection';
         isError = true;
         notifyListeners();
         return;
@@ -163,23 +167,24 @@ class DataProvider with ChangeNotifier {
     } on DioError catch (e) {
       if (e.type == DioErrorType.response) {
         isError = true;
+        errorMessage = 'An Error Has Occured Please Try Again';
         notifyListeners();
         return;
       }
       if (e.type == DioErrorType.connectTimeout) {
-        print('check your connection');
         isError = true;
+        errorMessage = 'Your Connection has Timed Out';
         notifyListeners();
         return;
       }
       if (e.type == DioErrorType.receiveTimeout) {
-        print('unable to connect to the server');
+        errorMessage = 'Unable to Connect to the Server';
         isError = true;
         notifyListeners();
         return;
       }
       if (e.type == DioErrorType.other) {
-        print('Something went wrong');
+        errorMessage = 'Something Went Wrong Please Check Your Connection';
         isError = true;
         notifyListeners();
         return;

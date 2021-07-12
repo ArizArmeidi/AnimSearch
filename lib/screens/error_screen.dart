@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ErrorScreen extends StatefulWidget {
+  late final String errorMessage;
+  ErrorScreen(this.errorMessage);
   @override
   _ErrorScreenState createState() => _ErrorScreenState();
 }
@@ -37,7 +39,7 @@ class _ErrorScreenState extends State<ErrorScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 10),
             child: Text(
-              'There might be a problem with the server please try again',
+              widget.errorMessage,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.grey[700],

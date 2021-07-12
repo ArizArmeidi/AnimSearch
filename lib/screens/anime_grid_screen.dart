@@ -35,7 +35,7 @@ class _AnimeGridPageState extends State<AnimeGridPage> {
         height: screenHeight,
         width: screenWidth,
         child: homeData.isError
-            ? ErrorScreen()
+            ? ErrorScreen(homeData.errorMessage)
             : homeData.isLoading
                 ? Center(
                     child: CircularProgressIndicator(
