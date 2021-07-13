@@ -14,13 +14,12 @@ class _WebViewContainerState extends State<WebViewContainer> {
   final _key = UniqueKey();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: WebView(
-          key: _key,
-          javascriptMode: JavascriptMode.unrestricted,
-          initialUrl: widget.url,
-        ),
+    return Scaffold(
+      appBar: AppBar(),
+      body: WebView(
+        key: _key,
+        javascriptMode: JavascriptMode.unrestricted,
+        initialUrl: widget.url,
       ),
     );
   }
