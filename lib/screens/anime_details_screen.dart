@@ -3,6 +3,7 @@ import 'package:anim_search/providers/data_provider.dart';
 import 'package:anim_search/widgets/anime_details_genres.dart';
 import 'package:anim_search/widgets/anime_details_header.dart';
 import 'package:anim_search/widgets/recommendation_card.dart';
+import 'package:anim_search/widgets/web_view_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,6 +34,21 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
     // final screenHeight = device.size.height;
     final screenWidth = device.size.width;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.open_in_browser_outlined,
+          color: Colors.white,
+        ),
+        tooltip: 'Open in browser',
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => WebViewContainer(animeData.url),
+            ),
+          );
+        },
+      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(

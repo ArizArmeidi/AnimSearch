@@ -45,6 +45,16 @@ class AnimeDetailsHeader extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
+                Text(
+                  animeData.episodes <= 0
+                      ? 'Ongoing'
+                      : animeData.episodes.toString() + ' Episodes',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.orange,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ],
             ),
           ),
