@@ -34,21 +34,23 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
     // final screenHeight = device.size.height;
     final screenWidth = device.size.width;
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.open_in_browser_outlined,
-          color: Colors.white,
-        ),
-        tooltip: 'Open in browser',
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => WebViewContainer(animeData.url),
-            ),
-          );
-        },
-      ),
+      floatingActionButton: !dataProvider.isLoading
+          ? FloatingActionButton(
+              child: Icon(
+                Icons.open_in_browser_outlined,
+                color: Colors.white,
+              ),
+              tooltip: 'Open in browser',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => WebViewContainer(animeData.url),
+                  ),
+                );
+              },
+            )
+          : null,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(
