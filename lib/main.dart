@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => DataProvider(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'AnimSearch',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           appBarTheme: AppBarTheme(

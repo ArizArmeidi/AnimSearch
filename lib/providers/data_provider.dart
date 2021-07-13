@@ -47,7 +47,7 @@ class DataProvider with ChangeNotifier {
         return;
       }
       if (e.type == DioErrorType.other) {
-        errorMessage = 'Something Went Wrong Please Check Your Connection';
+        errorMessage = 'Something Went Wrong\nPlease Check Your Connection';
         isError = true;
         notifyListeners();
         return;
@@ -92,7 +92,7 @@ class DataProvider with ChangeNotifier {
         return;
       }
       if (e.type == DioErrorType.other) {
-        errorMessage = 'Something Went Wrong Please Check Your Connection';
+        errorMessage = 'Something Went Wrong\nPlease Check Your Connection';
         isError = true;
         notifyListeners();
         return;
@@ -134,7 +134,7 @@ class DataProvider with ChangeNotifier {
         return;
       }
       if (e.type == DioErrorType.other) {
-        errorMessage = 'Something Went Wrong Please Check Your Connection';
+        errorMessage = 'Something Went Wrong\nPlease Check Your Connection';
         isError = true;
         notifyListeners();
         return;
@@ -184,7 +184,7 @@ class DataProvider with ChangeNotifier {
         return;
       }
       if (e.type == DioErrorType.other) {
-        errorMessage = 'Something Went Wrong Please Check Your Connection';
+        errorMessage = 'Something Went Wrong\nPlease Check Your Connection';
         isError = true;
         notifyListeners();
         return;
