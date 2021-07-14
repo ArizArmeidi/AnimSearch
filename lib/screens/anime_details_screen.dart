@@ -70,9 +70,12 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                     child: ColorFiltered(
                       colorFilter: ColorFilter.mode(
                           Colors.black.withOpacity(0.3), BlendMode.multiply),
-                      child: Image.network(
-                        animeData.imageUrl,
-                        fit: BoxFit.cover,
+                      child: Hero(
+                        tag: animeData.malId,
+                        child: Image.network(
+                          animeData.imageUrl,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     color: Colors.orange,

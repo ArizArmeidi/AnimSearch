@@ -26,9 +26,12 @@ class HomeCard extends StatelessWidget {
           Expanded(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                homeData.imageUrl,
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: homeData.malId,
+                child: Image.network(
+                  homeData.imageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
