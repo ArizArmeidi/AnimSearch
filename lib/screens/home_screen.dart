@@ -63,6 +63,14 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Container(),
         hint: 'Search anime or manga',
         iconColor: Colors.orange,
+        autocorrect: false,
+        onFocusChanged: (isFocused) {
+          if (!isFocused) {
+            setState(() {
+              getData('airing');
+            });
+          }
+        },
         leadingActions: [
           Padding(
             padding: const EdgeInsets.only(left: 5),
