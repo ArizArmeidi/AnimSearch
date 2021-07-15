@@ -22,14 +22,16 @@ class AnimeDetailsHeader extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
+                SizedBox(height: 2.5),
                 Text(
                   animeData.titleEnglish,
                   style: TextStyle(
                     fontSize: 15,
-                    color: Colors.grey,
+                    color: Colors.grey[600],
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+                SizedBox(height: 1),
                 Text(
                   animeData.airingDate,
                   style: TextStyle(
@@ -37,21 +39,21 @@ class AnimeDetailsHeader extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
+                SizedBox(height: 1),
                 Text(
                   animeData.rating,
                   style: TextStyle(
                     fontSize: 14,
-                    color: Colors.orange,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
+                SizedBox(height: 1),
                 Text(
                   animeData.episodes <= 0
                       ? 'Ongoing'
                       : animeData.episodes.toString() + ' Episodes',
                   style: TextStyle(
                     fontSize: 14,
-                    color: Colors.orange,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -59,28 +61,39 @@ class AnimeDetailsHeader extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Text(
-                '${animeData.score}',
+        Column(
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Text(
+                  '${animeData.score}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: CircularProgressIndicator(
+                    color: Colors.orange,
+                    backgroundColor: Colors.grey.withOpacity(.35),
+                    strokeWidth: 6.0,
+                    value: animeData.score / 10,
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Text(
+                'Ranked\n #${animeData.rank}',
                 style: TextStyle(
-                  fontWeight: FontWeight.w900,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              SizedBox(
-                height: 50,
-                width: 50,
-                child: CircularProgressIndicator(
-                  color: Colors.orange,
-                  backgroundColor: Colors.grey.withOpacity(.35),
-                  strokeWidth: 6.0,
-                  value: animeData.score / 10,
-                ),
-              ),
-            ],
-          ),
+            )
+          ],
         ),
       ],
     );
