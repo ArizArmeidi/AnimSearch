@@ -87,7 +87,10 @@ class AnimeDetailsHeader extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Text(
-                'Ranked\n #${animeData.rank}',
+                animeData.rank != 0
+                    ? 'Ranked\n #${animeData.rank}'
+                    : 'Ranked\n N/A',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                 ),
