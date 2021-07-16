@@ -1,3 +1,4 @@
+import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -47,21 +48,36 @@ class _AnimeGridPageState extends State<AnimeGridPage> {
                     onRefresh: getData,
                     color: Colors.orange,
                     strokeWidth: 2.5,
-                    child: GridView.builder(
-                      padding: EdgeInsets.all(15).copyWith(
-                        left: 20,
-                        right: 20,
+                    child: LiveGrid.options(
+                      padding: EdgeInsets.all(15).copyWith(left: 20, right: 20),
+                      options: LiveOptions(
+                        showItemInterval: Duration(
+                          milliseconds: 100,
+                        ),
                       ),
+                      itemCount: homeData.searchList.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 1.5 / 2.5,
                         crossAxisSpacing: 15,
                         mainAxisSpacing: 15,
                       ),
-                      itemCount: homeData.searchList.length,
-                      itemBuilder: (context, index) => HomeCard(
-                        homeData: homeData.searchList[index],
-                        cardIndex: index,
+                      itemBuilder: (context, index, animation) =>
+                          FadeTransition(
+                        opacity: Tween<double>(
+                          begin: 0,
+                          end: 1,
+                        ).animate(animation),
+                        child: SlideTransition(
+                          position: Tween<Offset>(
+                            begin: Offset(0, -0.1),
+                            end: Offset.zero,
+                          ).animate(animation),
+                          child: HomeCard(
+                            homeData: homeData.searchList[index],
+                            cardIndex: index,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -69,3 +85,17 @@ class _AnimeGridPageState extends State<AnimeGridPage> {
     );
   }
 }
+// GridView.builder(
+//                       
+//                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                         crossAxisCount: 2,
+//                         childAspectRatio: 1.5 / 2.5,
+//                         crossAxisSpacing: 15,
+//                         mainAxisSpacing: 15,
+//                       ),
+//                       itemCount: homeData.searchList.length,
+//                       itemBuilder: (context, index) => HomeCard(
+//                         homeData: homeData.searchList[index],
+//                         cardIndex: index,
+//                       ),
+//                     ),
