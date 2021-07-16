@@ -82,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 splashRadius: 25,
                 onPressed: () {
                   setState(() {
+                    _selectedIndex = 0;
                     getData('airing');
                   });
                 }),
