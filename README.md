@@ -1,5 +1,5 @@
 
- <h1 align="center">FlutterDex</h1>
+ <h1 align="center">AnimSearch</h1>
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/60814961/125910859-e08eda30-4712-4d21-baed-95171321cd0a.png" width="23%"></img> 
