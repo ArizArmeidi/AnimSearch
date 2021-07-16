@@ -90,6 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         onSubmitted: (query) {
           setState(() {
+            _selectedIndex = 0;
             searchData(query);
           });
         },
