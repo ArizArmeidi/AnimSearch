@@ -29,23 +29,25 @@ class _HomeScreenState extends State<HomeScreen> {
           getData(category);
         });
       },
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 5),
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 2.5),
-        decoration: BoxDecoration(
-          color: _selectedIndex == myIndex ? Colors.white : Colors.orange,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: Colors.orange,
-            width: .8,
+      child: FittedBox(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 2.5),
+          decoration: BoxDecoration(
+            color: _selectedIndex == myIndex ? Colors.white : Colors.orange,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: Colors.orange,
+              width: .8,
+            ),
           ),
-        ),
-        child: Text(
-          name,
-          style: TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.w600,
-            color: _selectedIndex == myIndex ? Colors.orange : Colors.white,
+          child: Text(
+            name,
+            style: TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.w600,
+              color: _selectedIndex == myIndex ? Colors.orange : Colors.white,
+            ),
           ),
         ),
       ),
