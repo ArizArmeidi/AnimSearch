@@ -1,4 +1,5 @@
 import 'package:anim_search/providers/data_provider.dart';
+import 'package:anim_search/types/category_type.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +11,7 @@ class ErrorScreen extends StatefulWidget {
 }
 
 class _ErrorScreenState extends State<ErrorScreen> {
-  Future<void> getData(String category) async {
+  Future<void> getData(CategoryType category) async {
     await Provider.of<DataProvider>(context, listen: false)
         .getHomeData(category: category);
   }
@@ -50,8 +51,8 @@ class _ErrorScreenState extends State<ErrorScreen> {
           ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.orange,
-                onPrimary: Colors.white,
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.orange,
                 padding: EdgeInsets.symmetric(horizontal: 25),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
@@ -62,7 +63,7 @@ class _ErrorScreenState extends State<ErrorScreen> {
               onPressed: () {
                 setState(() {
                   print('refreshed');
-                  getData('airing');
+                  getData(CategoryType.top);
                 });
               })
         ],

@@ -1,5 +1,6 @@
 import 'package:anim_search/providers/data_provider.dart';
 import 'package:anim_search/screens/anime_grid_screen.dart';
+import 'package:anim_search/types/category_type.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  Future<void> getData(String category) async {
+  Future<void> getData(CategoryType category) async {
     await Provider.of<DataProvider>(context, listen: false)
         .getHomeData(category: category);
   }
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Provider.of<DataProvider>(context, listen: false).searchData(query);
   }
 
-  Widget _buttonBuilder(String name, int myIndex, String category) {
+  Widget _buttonBuilder(String name, int myIndex, CategoryType category) {
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -69,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onFocusChanged: (isFocused) {
           if (!isFocused) {
             setState(() {
-              getData('airing');
+              getData(CategoryType.top);
             });
           }
         },
@@ -79,13 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
             child: IconButton(
                 icon: Icon(
                   Icons.album_outlined,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
                 splashRadius: 25,
                 onPressed: () {
                   setState(() {
                     _selectedIndex = 0;
-                    getData('airing');
+                    getData(CategoryType.top);
                   });
                 }),
           ),
@@ -106,12 +107,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 scrollDirection: Axis.horizontal,
                 children: [
-                  _buttonBuilder('Top', 0, 'airing'),
-                  _buttonBuilder('Upcoming', 1, 'upcoming'),
-                  _buttonBuilder('Series', 2, 'tv'),
-                  _buttonBuilder('Movies', 3, 'movie'),
-                  _buttonBuilder('OVA', 4, 'ova'),
-                  _buttonBuilder('Special Release', 5, 'special'),
+                  _buttonBuilder('Top', 0, CategoryType.top),
+                  _buttonBuilder('Upcoming', 1, CategoryType.upcoming),
+                  _buttonBuilder('Series', 2, CategoryType.series),
+                  _buttonBuilder('Movies', 3, CategoryType.movie),
+                  _buttonBuilder('OVA', 4, CategoryType.ova),
+                  _buttonBuilder('Special Release', 5, CategoryType.special),
                 ],
               ),
             ),

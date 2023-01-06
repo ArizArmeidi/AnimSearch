@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(
             elevation: 0,
           ),
-          primaryColor: Colors.white,
-          accentColor: Colors.orange,
+          primaryColor: Colors.white, 
+          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.orange),
         ),
         home: HomeScreen(),
         routes: {
