@@ -47,9 +47,9 @@ class AnimeModel {
     return AnimeModel(
       malId: json['mal_id'] ?? 0,
       url: json['url'] ?? '',
-      imageUrl: json['image_url'] ?? '',
+      imageUrl: json['images']['jpg']['image_url'] ?? '',
       title: json['title'] ?? '',
-      trailerUrl: json['trailer_url'] ?? '',
+      trailerUrl: json['trailer']['url'] ?? '',
       titleEnglish: json['title_english'] ?? 'TBA',
       synopsis: json['synopsis'] ?? '',
       status: json['status'] ?? '',

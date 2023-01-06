@@ -83,8 +83,7 @@ class DataProvider with ChangeNotifier {
   }
 
   Future<void> searchData(String query) async {
-    final String url =
-        'https://api.jikan.moe/v3/search/anime?q=$query&page=1&limit=12';
+    final String url = api_url + 'q=$query&page=1&limit=12';
     try {
       isLoading = true;
       isError = false;
@@ -128,13 +127,13 @@ class DataProvider with ChangeNotifier {
   }
 
   Future<void> getAnimeData(int malId) async {
-    final String url = 'https://api.jikan.moe/v3/anime/$malId';
+    final String url = 'https://api.jikan.moe/v4/anime/$malId';
     try {
       isLoading = true;
       isError = false;
       var dio = Dio();
       var response = await dio.get(url);
-      animeData = AnimeModel.fromJson(response.data);
+      animeData = AnimeModel.fromJson(response.data['data']);
       await getRecommendationData(animeData.genreId);
       isLoading = false;
       notifyListeners();
