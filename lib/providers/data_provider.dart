@@ -1,6 +1,8 @@
+import 'package:anim_search/constants.dart';
 import 'package:anim_search/models/anime_model.dart';
 import 'package:anim_search/models/home_card_model.dart';
 import 'package:anim_search/models/recommendation_model.dart';
+import 'package:anim_search/types/category_type.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
@@ -13,9 +15,30 @@ class DataProvider with ChangeNotifier {
   late int genreId;
   late AnimeModel animeData = AnimeModel();
 
-  Future<void> getHomeData({String category = 'airing'}) async {
-    // final String url = 'https://api.jikan.moe/v4/anime/1/$category';
-    final String url = 'https://api.jikan.moe/v4/anime?status=airing';
+  Future<void> getHomeData({CategoryType category = CategoryType.top}) async {
+    final String url;
+
+    switch (category) {
+      case CategoryType.top:
+        url = top_url;
+        break;
+      case CategoryType.upcoming:
+        url = upcoming_url;
+        break;
+      case CategoryType.series:
+        url = series_url;
+        break;
+      case CategoryType.movie:
+        url = movie_url;
+        break;
+      case CategoryType.ova:
+        url = ova_url;
+        break;
+      case CategoryType.special:
+        url = special_url;
+        break;
+    }
+
     try {
       isLoading = true;
       isError = false;
