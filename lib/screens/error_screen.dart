@@ -50,8 +50,8 @@ class _ErrorScreenState extends State<ErrorScreen> {
           ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.orange,
-                onPrimary: Colors.white,
+                foregroundColor: Colors.white, 
+                backgroundColor: Colors.orange,
                 padding: EdgeInsets.symmetric(horizontal: 25),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
