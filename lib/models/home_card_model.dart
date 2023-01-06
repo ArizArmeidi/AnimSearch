@@ -15,7 +15,7 @@ class HomeCardModel {
     return HomeCardModel(
       malId: json['mal_id'],
       url: json['url'],
-      imageUrl: json['image_url'],
+      imageUrl: json['images']['jpg']['image_url'],
       title: json['title'],
     );
   }

@@ -12,8 +12,13 @@ class WebViewContainer extends StatefulWidget {
 
 class _WebViewContainerState extends State<WebViewContainer> {
   final _key = UniqueKey();
+
   @override
   Widget build(BuildContext context) {
+    final _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadRequest(Uri.parse(widget.url));
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
@@ -21,11 +26,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
         ),
         backgroundColor: Colors.orange,
       ),
-      body: WebView(
-        key: _key,
-        javascriptMode: JavascriptMode.unrestricted,
-        initialUrl: widget.url,
-      ),
+      body: WebViewWidget(key: _key, controller: _controller),
     );
   }
 }
