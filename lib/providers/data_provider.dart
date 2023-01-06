@@ -14,14 +14,15 @@ class DataProvider with ChangeNotifier {
   late AnimeModel animeData = AnimeModel();
 
   Future<void> getHomeData({String category = 'airing'}) async {
-    final String url = 'https://api.jikan.moe/v3/top/anime/1/$category';
+    // final String url = 'https://api.jikan.moe/v4/anime/1/$category';
+    final String url = 'https://api.jikan.moe/v4/anime?status=airing';
     try {
       isLoading = true;
       isError = false;
       var dio = Dio();
       var response = await dio.get(url);
       List<HomeCardModel> tempData = [];
-      List items = response.data['top'];
+      List items = response.data['data'];
       tempData = items.map((data) => HomeCardModel.fromJson(data)).toList();
       searchList = tempData;
       print(searchList.length);
