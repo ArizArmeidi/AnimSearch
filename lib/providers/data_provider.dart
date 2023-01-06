@@ -83,14 +83,14 @@ class DataProvider with ChangeNotifier {
   }
 
   Future<void> searchData(String query) async {
-    final String url = api_url + 'q=$query&page=1&limit=12';
+    final String url = Uri.encodeFull(api_url + '?q=$query&page=1&limit=12');
     try {
       isLoading = true;
       isError = false;
       var dio = Dio();
       var response = await dio.get(url);
       List<HomeCardModel> tempData = [];
-      List items = response.data['results'];
+      List items = response.data['data'];
       tempData = items.map((data) => HomeCardModel.fromJson(data)).toList();
       searchList = tempData;
       isLoading = false;
